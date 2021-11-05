@@ -1,0 +1,42 @@
+﻿@page "/notes/new"
+@page "/notes/{NoteId}/edit"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inherits PageBase
+<h2>Edytuj notatkę</h2>
+
+<div class="container mt-4">
+    @if (Model == null)
+    {
+        <p>Pobieranie...</p>
+    }
+    else
+    {
+        <EditForm id="form" Model="Model" OnValidSubmit="OnSubmitForm">
+
+            <section class="edit ">
+                <DataAnnotationsValidator />
+
+                <div class="row">
+                    <div class="col-4">
+                        <h4>Treść notatki</h4>
+                    </div>
+                    <div class="col-8">
+                        <RadzenTextArea @bind-Value=@Model.Content Rows="10" Style="width: 100%" />
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col" style="text-align: center">
+
+                        <RadzenButton style="margin: 0 1rem 1rem 0; width: 200px" IsBusy=@Model.IsSaving ButtonType="ButtonType.Submit" Text="Zapisz" />
+
+                    </div>
+                </div>
+
+            </section>
+
+        </EditForm>
+    }
+
+</div>

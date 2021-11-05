@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>NoteBookApp.Server-D237E75D-71F5-4C9E-BF3D-79BE4A9D0A22</UserSecretsId>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Models\**" />
+	  <Content Remove="Models\**" />
+	  <EmbeddedResource Remove="Models\**" />
+	  <None Remove="Models\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.11" />
+		<PackageReference Include="NHibernate" Version="5.3.10" />
+		<PackageReference Include="NHibernate.AspNetCore.Identity" Version="5.0.15" />
+		<PackageReference Include="NHibernate.NetCore" Version="5.0.11" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.1" />
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Client\NoteBookApp.Client.csproj" />
+		<ProjectReference Include="..\Logic\NoteBookApp.Logic.csproj" />
+		<ProjectReference Include="..\NoteBookApp.FileSystems.AzureBlobStorage\NoteBookApp.FileSystems.AzureBlobStorage.csproj" />
+		<ProjectReference Include="..\Shared\NoteBookApp.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
+		<PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="5.0.11" />
+	</ItemGroup>
+
+</Project>

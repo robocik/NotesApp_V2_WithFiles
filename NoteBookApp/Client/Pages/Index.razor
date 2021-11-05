@@ -1,0 +1,20 @@
+﻿@page "/"
+@using  NoteBookApp.Client.Components
+@inherits PageBase
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@if (Model != null)
+{
+    <h4>Kliknij, aby zmienić swój obrazek profilowy</h4>
+    <AvatarComponent AvatarUrl="@Model!.ProfileUrl" OnUploadAvatar="UploadAvatar" OnDeleteAvatar="DeleteAvatar">
+        <EmptyContent>
+            
+            <RadzenGravatar Email="@Model!.Email" class="avatar-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Kliknij, aby zmienić">
+            </RadzenGravatar>
+        </EmptyContent>
+    </AvatarComponent>
+}

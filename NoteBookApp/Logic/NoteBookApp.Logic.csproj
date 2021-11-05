@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NHibernate" Version="5.3.10" />
+		<PackageReference Include="NHibernate.AspNetCore.Identity" Version="5.0.15" />
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Handlers\Notes\GetNotes\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Shared\NoteBookApp.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using NoteBookApp.Shared
+@using Constants = NoteBookApp.Client.Constants
+
+@page "/files/{NoteId}"
+@attribute [Authorize]
+@inherits PageBase
+<h1>Pliki</h1>
+
+<div class="row">
+    <div class="col">
+        <RadzenDataGrid Count="@Model.Count" Data="@Model.Files" LoadData="@LoadData" AllowSorting="true" AllowPaging="true" PageSize="@Constants.PageSize" TItem="FileViewModel">
+            <Columns>
+                <RadzenDataGridColumn TItem="FileViewModel" Property="FileName" Title="Plik">
+                    <Template Context="data">
+                        <a href="javascript:void(0)" @onclick="@(() => DownloadFileAsync(data.Id))">@data.FileName</a>
+
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="FileViewModel" Property="Length" Title="Wielkość" />
+                <RadzenDataGridColumn TItem="FileViewModel" Title="Akcje" Sortable="false">
+                    <Template Context="data">
+
+                        <button type="button" @onclick="@(() => DeleteFile(data.Id))" class="btn btn-danger" title="Usuń plik">
+                            <span class="oi oi-trash"></span>
+                        </button>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <BlazorInputFile.InputFile id="fileInput" title=""
+                                   OnChange="HandleFileInputChange"
+                                   @ondragenter="HandleDragEnter"
+                                   @ondragleave="HandleDragLeave" />
+    </div>
+</div>

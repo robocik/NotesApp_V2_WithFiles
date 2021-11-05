@@ -1,0 +1,38 @@
+﻿@inherits NoteBookApp.Client.Pages.BoxBase
+
+
+    <label>
+        <BlazorInputFile.InputFile id="fileInput" OnChange="HandleFileInputChange" style="display: none" />
+        
+    @if (IsAvatarSaving)
+    {
+        <p class="avatar-progress "><ProgressIndicator/></p>
+    }
+    else
+    {
+
+        @if (AvatarUrl != null)
+        {
+            <img src="@AvatarUrl" class="@ImageClass img-thumbnail shadow-sm avatar-edit" title="Kliknij, aby zmienić"/>
+        }
+        else
+        {
+            @if (EmptyContent != null)
+            {
+                @EmptyContent
+            }
+            else
+            {
+                <span class="disable-box-message clickable">@EmptyText</span>
+            }
+
+        }
+    }
+
+    </label>
+    @if (!IsAvatarSaving && HasAvatar)
+    {
+        <button type="button" @onclick="DeleteAvatar"  title="Usuń awatar" style="margin-left: -2rem" class="btn btn-sm btn-danger align-top ">
+            <span class="oi oi-trash"></span>
+        </button>
+    }
